@@ -20,7 +20,7 @@ ProgateのRuby on Railsコースで作るアプリ
 ```
 のように書く  
 ・引数なしの関数の呼び出しは`()`なしで良い  
-・テンプレートリテラルは`#{}`を使う  
+・テンプレートリテラルは`#{}`を使う(ダブルクウォートでしか使えない)  
 ・アクション内での変数定義には`@`をつける  
 ・`content`カラムを持つ`Posts`テーブルの作成: `rails g model Post content:text` (`Post`が単数形なのに注意) → `rails db:migrate`  
 ・コンソールの起動: `rails console` (`quit`で終了)  
@@ -38,3 +38,15 @@ ProgateのRuby on Railsコースで作るアプリ
 ```
 ・リダイレクトには`redirect_to`を使う  
 ・`link_to`はデフォルトだと`GET`のルーティングを探してしまう `POST`のルーティングにマッチさせる場合は、`<%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>`と書く  
+・バリデーションは`app/models/post.rb`等に書く 空の投稿を防ぐ場合、以下のようになる
+```
+class Post < ApplicationRecord
+    validates :content, {presence: true}
+end
+```  
+・最大文字数を140文字にする場合のバリデーション `validates :content, {length: {maximum: 140}}`  
+・バリデーションの複数指定も可  ex. `validates :content, {presence: true, length: {maximum: 140}}`  
+・バリデーションを通った場合、`save`メソッドは`true`、通らなかった場合は`false`を返す  
+・`render(フォルダ名/ファイル名)`を使うことで、別のアクションを経由せずに、直接ビューを表示できる  
+・`save`メソッドに失敗したオブジェクトの`errors.full_messages`にエラー内容が配列で入る  
+・投稿完了メッセージ等の一度だけ表示したいメッセージは`flash[:notice]`に代入する  
