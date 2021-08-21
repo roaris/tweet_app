@@ -19,6 +19,7 @@ ProgateのRuby on Railsコースで作るアプリ
 <% end %>
 ```
 のように書く  
+・引数なしの関数の呼び出しは`()`なしで良い  
 ・テンプレートリテラルは`#{}`を使う  
 ・アクション内での変数定義には`@`をつける  
 ・`content`カラムを持つ`Posts`テーブルの作成: `rails g model Post content:text` (`Post`が単数形なのに注意) → `rails db:migrate`  
@@ -35,4 +36,5 @@ ProgateのRuby on Railsコースで作るアプリ
     <input type="submit" value="投稿">
 <% end %>
 ```
-・リダイレクトには`redirect_to`を使う
+・リダイレクトには`redirect_to`を使う  
+・`link_to`はデフォルトだと`GET`のルーティングを探してしまう `POST`のルーティングにマッチさせる場合は、`<%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>`と書く  
