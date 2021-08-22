@@ -55,3 +55,16 @@ end
 ・カラムを追加する場合、マイグレーションファイルに`add_column :テーブル名, :カラム名, :データ型`と書く  
 ・画像を送信する場合、`form_tag`の第二引数で、`{multipart: true}`を指定する  
 ・フォームから送信された画像を保存するときは、`File.binwrite`を使う  
+・バリデーション以外のエラーメッセージは自作する必要がある  
+・セッション情報は変数`session`で保持する ex. `session[:user_id] = @user.id` `session[:user_id] = nil`
+・セッション情報の削除は`post`を指定する  
+・各アクションの実行前に行いたい処理は`before_action`を使う  
+```
+before_action :set_current_user
+def set_current_user
+    @current_user = User.find_by(id: session[:user_id])
+end
+```  
+・全てのコントローラーで共通する処理は`application`コントローラーにまとめる(他のコントローラーは`application`コントローラーを継承している)  
+・`before_action`を特定のアクションにのみ適用する場合は、`before_action :authenticate_user, {only: [:edit, :update]}`のように書く  
+・@変数は同じクラスの異なるメソッドで共通して使うことができる  
