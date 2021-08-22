@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   post 'posts/:id/update' => 'posts#update'
   post 'posts/create' => 'posts#create'
   post 'posts/:id/destroy' => 'posts#destroy'
+  get 'users/index' => 'users#index'
+  get 'users/:id' => 'users#show'
+  get 'signup' => 'users#new'
+  post 'users/create' => 'users#create'
+  get 'users/:id/edit' => 'users#edit'
+  post 'users/:id/update' => 'users#update'
 end
