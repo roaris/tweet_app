@@ -22,7 +22,7 @@ ProgateのRuby on Railsコースで作るアプリ
 ・引数なしの関数の呼び出しは`()`なしで良い  
 ・テンプレートリテラルは`#{}`を使う(ダブルクウォートでしか使えない)  
 ・アクション内での変数定義には`@`をつける  
-・`content`カラムを持つ`Posts`テーブルの作成: `rails g model Post content:text` (`Post`が単数形なのに注意) → `rails db:migrate`  
+・`name`カラムと`email`カラムを持つ`users`テーブルの作成: `rails g model User name:string email:string` (`User`が単数形なのに注意) → `rails db:migrate`  
 ・コンソールの起動: `rails console` (`quit`で終了)  
 ・一覧取得には`all`を使う (ex. `Post.all`)  
 ・レコード取得には`find_by`を使う (ex. `Post.find_by(id: 1)`)  
@@ -45,6 +45,7 @@ class Post < ApplicationRecord
 end
 ```  
 ・最大文字数を140文字にする場合のバリデーション `validates :content, {length: {maximum: 140}}`  
+・一意性のバリデーション `validates :email, {uniqueness: true}`  
 ・バリデーションの複数指定も可  ex. `validates :content, {presence: true, length: {maximum: 140}}`  
 ・バリデーションを通った場合、`save`メソッドは`true`、通らなかった場合は`false`を返す  
 ・`render(フォルダ名/ファイル名)`を使うことで、別のアクションを経由せずに、直接ビューを表示できる  
