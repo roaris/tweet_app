@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def show
     @id = params[:id]
     @post = Post.find_by(id: @id)
+    @user = @post.user
   end
 
   def new
@@ -31,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(content: params[:content])
+    @post = Post.new(content: params[:content], user_id: @current_user.id)
     @post.save
 
     if @post.save
