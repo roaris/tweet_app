@@ -25,7 +25,8 @@ ProgateのRuby on Railsコースで作るアプリ
 ・`name`カラムと`email`カラムを持つ`users`テーブルの作成: `rails g model User name:string email:string` (`User`が単数形なのに注意) → `rails db:migrate`  
 ・コンソールの起動: `rails console` (`quit`で終了)  
 ・一覧取得には`all`を使う (ex. `Post.all`)  
-・レコード取得には`find_by`を使う (ex. `Post.find_by(id: 1)`)  
+・1件のレコード取得には`find_by`を使う (ex. `Post.find_by(id: 1)`)  
+・複数件のレコード取得には`where`を使う (ex. `Post.where(user_id: 1)`)  
 ・データ保存には`save`を使う (ex. `@post.save`)  
 ・入力の並び替えには`order`を使う (ex. `Post.all.order(created_at: :desc)`)  
 ・ヘッダーなどの共通レイアウトは`application.html.erb`に書く  
