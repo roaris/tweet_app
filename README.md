@@ -29,6 +29,7 @@ ProgateのRuby on Railsコースで作るアプリ
 ・複数件のレコード取得には`where`を使う (ex. `Post.where(user_id: 1)`)  
 ・データ保存には`save`を使う (ex. `@post.save`)  
 ・入力の並び替えには`order`を使う (ex. `Post.all.order(created_at: :desc)`)  
+・件数の取得は`count`を使う (ex. `Like.where(post_id: 1).count`)  
 ・ヘッダーなどの共通レイアウトは`application.html.erb`に書く  
 ・入力されたデータの送信には`form_tag`を使う
 ```
@@ -39,6 +40,13 @@ ProgateのRuby on Railsコースで作るアプリ
 ```
 ・リダイレクトには`redirect_to`を使う  
 ・`link_to`はデフォルトだと`GET`のルーティングを探してしまう `POST`のルーティングにマッチさせる場合は、`<%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>`と書く  
+・ HTML要素に対して、`link_to`を使う場合は、
+```
+<%= link_to("URL") do %>
+HTML
+<% end %>
+```
+のように書く  
 ・バリデーションは`app/models/post.rb`等に書く 空の投稿を防ぐ場合、以下のようになる
 ```
 class Post < ApplicationRecord
